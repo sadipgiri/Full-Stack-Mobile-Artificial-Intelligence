@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+        width: 100%
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <h3><center>Quantum Leap International Project Group 2</center></h3>
+    <div id="map"></div>
+
+
+ <script>
+ var objs = [
+  {
+    "Lattitude": "42.889198",
+    "EssayTitle": "Bennington Battle Monument",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.bvl5cj3jthn8",
+    "Qentry": "54",
+    "NextTitle": "Sea Mink in the Gulf of Maine",
+    "Marker": "Bennington,VT",
+    "InfoWindow": "A monument (ancient or modern)",
+    "Longitude": "-73.215617",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.g5oouwngts4e",
+    "Name": "Chasity01"
+  },
+  {
+    "Lattitude": "43.13741",
+    "EssayTitle": "Sea Mink in the Gulf of Maine",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.hgsfvzrcm4ih",
+    "Qentry": "42",
+    "NextTitle": "Terroist Attacks in Mogadishu",
+    "Marker": "Gulf of Maine, Northeast Coast",
+    "InfoWindow": "Some place where a species used to live, nut has gone extinct due to mankind ",
+    "Longitude": "-68.097915",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.bvl5cj3jthn8",
+    "Name": "Chasity08"
+  },
+  {
+    "Lattitude": "2.0469",
+    "EssayTitle": "Terroist Attacks in Mogadishu ",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.84d5o9hmoe96",
+    "Qentry": "84",
+    "NextTitle": "The Unspeakable Violence of Rwanda Genocide ",
+    "Marker": "Mogadishu, Somalia",
+    "InfoWindow": "A site of a recent terroist attack (not in the united states)",
+    "Longitude": "45.3182",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.hgsfvzrcm4ih",
+    "Name": "Kyle01"
+  },
+  {
+    "Lattitude": "-1.998184",
+    "EssayTitle": "The unspeakable Violence of Rwanda genocide ",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.sye21cxrywaw",
+    "Qentry": "7",
+    "NextTitle": "The Democratic Republic of the Congo: poor nation with vast natural resources",
+    "Marker": "Rwanda, Africa",
+    "InfoWindow": "A place where a genocide took place ao you can document the causes and impacts ",
+    "Longitude": "29.874034",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.84d5o9hmoe96",
+    "Name": "Hanna01"
+  },
+  {
+    "Lattitude": "-3.413301",
+    "EssayTitle": "The Democratic Republic of the Congo: poor nation with vast natural resources",
+    "OtherLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.mkjvn85zqzw7",
+    "Qentry": "26",
+    "NextTitle": "The Okapi - Democratic Republic of Congo",
+    "Marker": "The democratic Republic of Congo",
+    "InfoWindow": "A destination where poverty is having a significant impact",
+    "Longitude": "24.319195",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.sye21cxrywaw",
+    "Name": "Hanna02"
+  },
+  {
+    "Lattitude": "31.504627",
+    "EssayTitle": "The Okapi - Democratic Republic of Congo ",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.icepkve5f4yq",
+    "Qentry": "58",
+    "NextTitle": "Easter Island, Polynesia ",
+    "Marker": "The okapi/ Congo Rainforrest ",
+    "InfoWindow": "A place where you can find a species that is only endemic to specific region",
+    "Longitude": "34.464363",
+    "EssayLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.mkjvn85zqzw7",
+    "Name": "Ludmila01"
+  },
+  {
+    "Lattitude": "-27.112288",
+    "EssayTitle": "Easter Island, Polynesia ",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.icepkve5f4yq",
+    "Qentry": "38",
+    "NextTitle": "Perito Moreno Glacier, Argentina",
+    "Marker": "Easter Island, Polynesia",
+    "InfoWindow": "A place where people say ancient exterrestrial life is referenced ",
+    "Longitude": "-109.349375",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.icepkve5f4yq",
+    "Name": "bee02"
+  },
+  {
+    "Lattitude": "-35.778431",
+    "EssayTitle": "Perito Moreno Glacier, Argentina",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.amv2hhw39hda",
+    "Qentry": "10",
+    "NextTitle": "Andes Mountains",
+    "Marker": "Agrentina",
+    "InfoWindow": "A destination in one of the international students countries 2",
+    "Longitude": "-65.399486",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.ropjdih7tio5",
+    "Name": "Kayla01"
+  },
+  {
+    "Lattitude": "32.653363",
+    "EssayTitle": "Andes Mountain ",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.j86ege5mbhxs",
+    "Qentry": "14",
+    "NextTitle": "Kallawayas healers - community, Bolivia ",
+    "Marker": "Andes Mountain Range ",
+    "InfoWindow": "A desert , a trail, or a mountain range",
+    "Longitude": "70.01085",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.amv2hhw39hda",
+    "Name": "Ludmila02"
+  },
+  {
+    "Lattitude": "15.15146",
+    "EssayTitle": "Kallawyas healers in Bolivia ",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.9pg45yi232os",
+    "Qentry": "73",
+    "NextTitle": "Satere- mawe, Brazil",
+    "Marker": "Kallawyas healers - community, Bolivia ",
+    "InfoWindow": "A destination where you can explore a remote cultural in Central or South America",
+    "Longitude": "68.825389",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.j86ege5mbhxs",
+    "Name": "Ludmila03"
+  },
+  {
+    "Lattitude": "-3.734636",
+    "EssayTitle": "Brazil, Satere-Mawe",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.o9r2h8i18fyn",
+    "Qentry": "64",
+    "NextTitle": "Latino Hip-hop/rap",
+    "Marker": "Satere-Mawe, Brazil",
+    "InfoWindow": "A destintion where you must do something out of your comfort zone",
+    "Longitude": "-56.893826",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.9pg45yi232os",
+    "Name": "bee06"
+  },
+  {
+    "Lattitude": "8.7832",
+    "EssayTitle": "Latino Hip-Hop/rap",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.jatsejbcn8ft",
+    "Qentry": "32",
+    "NextTitle": "Costa Rica",
+    "Marker": "South America",
+    "InfoWindow": "A concert or dance where the theme is completely new to you ",
+    "Longitude": "55.4915",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.o9r2h8i18fyn",
+    "Name": "Kyle08"
+  },
+  {
+    "Lattitude": "10.233822",
+    "EssayTitle": "Costa Rica",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.mdqjukuxptno",
+    "Qentry": "19",
+    "NextTitle": "Hati:A nation too familiar with natural disasters",
+    "Marker": "Costa Rica",
+    "InfoWindow": "An ecotourism destination ",
+    "Longitude": "-84.807653",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.jatsejbcn8ft",
+    "Name": "Chasity02"
+  },
+  {
+    "Lattitude": "18.552662",
+    "EssayTitle": "Haiti:A nation too familiar with natural disasters ",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.dqc9sdb3a65p",
+    "Qentry": "20",
+    "NextTitle": "Sea world, Florida, U.S.A",
+    "Marker": "Hati",
+    "InfoWindow": "A palce that is dangerous due to geography ",
+    "Longitude": "-72.232965",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.mdqjukuxptno",
+    "Name": "Hanna03"
+  },
+  {
+    "Lattitude": "28.411455",
+    "EssayTitle": "LoggerHead Sea Turtle, Florida ",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.2jq987y7zsdv",
+    "Qentry": "56",
+    "NextTitle": "Marijuana Protest in Washington D.C",
+    "Marker": "Sea world, Florida, U.S.A ",
+    "InfoWindow": "A place where you can learn about an endangered species an explore its habits ",
+    "Longitude": "-81.461662",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.dqc9sdb3a65p",
+    "Name": "bee05"
+  },
+  {
+    "Lattitude": "38.901529",
+    "EssayTitle": "Marijuana Protest in Washington D.C",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.jm5lrmg492a3",
+    "Qentry": "15",
+    "NextTitle": "Van Gogh Muscam, Amsterdam",
+    "Marker": "Washington DC",
+    "InfoWindow": "A destiantion where protests are occuring ",
+    "Longitude": "-77.033127",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.2jq987y7zsdv",
+    "Name": "Kayla02"
+  },
+  {
+    "Lattitude": "52.358425",
+    "EssayTitle": "Van Gogh Muscam, Amsterdam",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.tl4ckpuci8sv",
+    "Qentry": "46",
+    "NextTitle": "Salt Mines in Luneburg Germany",
+    "Marker": "Van Gogh Muscam, Amsterdam",
+    "InfoWindow": "Some place where remarkable art exists",
+    "Longitude": "4.881075",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.jm5lrmg492a3",
+    "Name": "bee03"
+  },
+  {
+    "Lattitude": "50.965471",
+    "EssayTitle": "Luneburg, Germany",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.auv0y33ql5e",
+    "Qentry": "63",
+    "NextTitle": "Minsk, Belarus",
+    "Marker": "Germany",
+    "InfoWindow": "A place where salt is (or was) special ",
+    "Longitude": "10.382514",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.tl4ckpuci8sv",
+    "Name": "Kayla05"
+  },
+  {
+    "Lattitude": "53.89732",
+    "EssayTitle": "Minsk, Belarus",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.b59f2iqfener",
+    "Qentry": "9",
+    "NextTitle": "Mostar Bridge as a symbol of lingering divide",
+    "Marker": "Belarus ",
+    "InfoWindow": "A destination in one of the international student's countries 1",
+    "Longitude": "27.56177",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.auv0y33ql5e",
+    "Name": "Kyle02"
+  },
+  {
+    "Lattitude": "43.351907",
+    "EssayTitle": "Mostar Bridge as a symbol of lingering divide",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.9f9pkxdt1ka6",
+    "Qentry": "50",
+    "NextTitle": "A Great Palace",
+    "Marker": "Mostar Bosnia and Herzegovina",
+    "InfoWindow": "A place where the after-effects of war are still felt ",
+    "Longitude": "17.82227",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.b59f2iqfener",
+    "Name": "Hanna06"
+  },
+  {
+    "Lattitude": "43.5081",
+    "EssayTitle": "A Great Palace",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.dtiauqlotzsu",
+    "Qentry": "80",
+    "NextTitle": "Roman Tourist Attractions",
+    "Marker": "Croatia",
+    "InfoWindow": "A place to visit ancietn ruins 1",
+    "Longitude": "16.4402",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.9f9pkxdt1ka6",
+    "Name": "Kyle03"
+  },
+  {
+    "Lattitude": "41.9028",
+    "EssayTitle": "Roman Tourist Attractions ",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.hl96w9yfgzdm",
+    "Qentry": "37",
+    "NextTitle": "Terracota Baby bottle, toy rattle, all in one in Italy",
+    "Marker": "Rome, Italy",
+    "InfoWindow": "A tourist destination in a major European city",
+    "Longitude": "12.4964",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.dtiauqlotzsu",
+    "Name": "Kyle09"
+  },
+  {
+    "Lattitude": "42.772191",
+    "EssayTitle": "Terracota Baby bottle, toy rattle, all in one in Italy",
+    "OtherLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.eezqcb8uaeng",
+    "Qentry": "49",
+    "NextTitle": "An Ancient Mining System, Rome",
+    "Marker": "Italy",
+    "InfoWindow": "A destination where you can detail the significance of ancient artifacts 2",
+    "Longitude": "12.414922",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.hl96w9yfgzdm",
+    "Name": "Kayla06"
+  },
+  {
+    "Lattitude": "41.88726",
+    "EssayTitle": "An Ancient Mining System, Rome",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.w4qw3d1wo5ml",
+    "Qentry": "51",
+    "NextTitle": "Diving in the Deep",
+    "Marker": "Rome",
+    "InfoWindow": "A mining system (ancient or modern)",
+    "Longitude": "12.495515",
+    "EssayLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.eezqcb8uaeng",
+    "Name": "Kayla07"
+  },
+  {
+    "Lattitude": "35.85367",
+    "EssayTitle": "Diving in the Deep",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.14tc523vn9sx",
+    "Qentry": "78",
+    "NextTitle": "First Computer",
+    "Marker": "Marsaskala bay, Malta",
+    "InfoWindow": "A place where you can go deep sea fishing,diving in the deep, or sea-life watching ",
+    "Longitude": "14.562406",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.w4qw3d1wo5ml",
+    "Name": "Chasity06"
+  },
+  {
+    "Lattitude": "35.862",
+    "EssayTitle": "First Computer",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.s51ng24hva6j",
+    "Qentry": "79",
+    "NextTitle": "Delos Island, Greece",
+    "Marker": "Greece",
+    "InfoWindow": "An  underwater destination",
+    "Longitude": "31.1342",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.14tc523vn9sx",
+    "Name": "Kyle04 "
+  },
+  {
+    "Lattitude": "37.348056",
+    "EssayTitle": "Delos Island, Greece",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.l0k22j1u7alc",
+    "Qentry": "82",
+    "NextTitle": "Slavery in Harem- ottoman Empire",
+    "Marker": "Delos-Island, Greece",
+    "InfoWindow": "An island that was once important to ancient trade",
+    "Longitude": "25.268052",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.s51ng24hva6j",
+    "Name": "bee08"
+  },
+  {
+    "Lattitude": "41.011717",
+    "EssayTitle": "Slavery in Harem- ottoman Empire",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.8ujw9o9m9ejl",
+    "Qentry": "52",
+    "NextTitle": "Alexandria Egypt",
+    "Marker": "Harems in topkzpi Palace, Turkey",
+    "InfoWindow": "A place where people are being exploited today",
+    "Longitude": "28.983365",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.l0k22j1u7alc",
+    "Name": "Ludmila07"
+  },
+  {
+    "Lattitude": "31.208214",
+    "EssayTitle": "Alexandria Egypt",
+    "OtherLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.2y9wwt1yuxw1",
+    "Qentry": "24",
+    "NextTitle": "Great Pyramid of Giza",
+    "Marker": "Alexandria",
+    "InfoWindow": "An ancient seaport",
+    "Longitude": "29.893635",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.8ujw9o9m9ejl",
+    "Name": "Chasity03"
+  },
+  {
+    "Lattitude": "29.9792",
+    "EssayTitle": "Great Pyramid of Giza",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.8qh2pncduxvv",
+    "Qentry": "77",
+    "NextTitle": "Palestine: Al-Omari Mosque Destroyed",
+    "Marker": "Cairo, Egypt",
+    "InfoWindow": "A desination of ancient engineering genius ",
+    "Longitude": "31.1342",
+    "EssayLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.2y9wwt1yuxw1",
+    "Name": "Kyle05"
+  },
+  {
+    "Lattitude": "31.504627",
+    "EssayTitle": "Palestine: Al-Omari Mosque Destroyed",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.azpnhr26jmy2",
+    "Qentry": "57",
+    "NextTitle": "Aleppo: A syrian city ravaged by the civil war",
+    "Marker": "Palestine",
+    "InfoWindow": "An ancient mounument that has been damaged ",
+    "Longitude": "34.464395",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.8qh2pncduxvv",
+    "Name": "Ludmila08"
+  },
+  {
+    "Lattitude": "36.209184",
+    "EssayTitle": "Aleppo: A syrian city ravaged by the civil war",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.4vdqhercavr9",
+    "Qentry": "5",
+    "NextTitle": "The Aral Sea in Cenral Asia",
+    "Marker": "Aleppo, Syria",
+    "InfoWindow": "A place of cultural significance that has been damaged by civil war",
+    "Longitude": "37.136566",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.azpnhr26jmy2",
+    "Name": "Hanna04"
+  },
+  {
+    "Lattitude": "45.3963",
+    "EssayTitle": "The Aral Sea in Cenral Asia ",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.bo4frp7mvfto",
+    "Qentry": "33",
+    "NextTitle": "Gobi desert, Mongolia",
+    "Marker": "The Aral Sea, Central Asia (Kazakhstan, Tajikistan)",
+    "InfoWindow": "A place where there is an on going conflic over water ",
+    "Longitude": "59.6134",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.4vdqhercavr9",
+    "Name": "Hanna08"
+  },
+  {
+    "Lattitude": "47.466129",
+    "EssayTitle": "Gobi desert, Mongolia",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.a9rbw27ycjea",
+    "Qentry": "17",
+    "NextTitle": "Buddhas Hand in China",
+    "Marker": "Gobi desert, Mongolia",
+    "InfoWindow": "A destination where you must travel by pack animal",
+    "Longitude": "103.017864",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.bo4frp7mvfto",
+    "Name": "bee07"
+  },
+  {
+    "Lattitude": "33.758268",
+    "EssayTitle": "Buddhas Hand in China",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.hgepbqjuoqc6",
+    "Qentry": "26",
+    "NextTitle": "Rohingya refugee camps: A Stateless Community",
+    "Marker": "China",
+    "InfoWindow": "A destination where poverty is having a significant imapact",
+    "Longitude": "104.016286",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.a9rbw27ycjea",
+    "Name": "Chasity04"
+  },
+  {
+    "Lattitude": "21.444167",
+    "EssayTitle": "Rohingya refugee camps: A Stateless Community",
+    "OtherLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.wopkhaahovcl",
+    "Qentry": "83",
+    "NextTitle": "Sweatshops in bangladesh: The true cost of the clothes you wear",
+    "Marker": "Rohingya refugee camps",
+    "InfoWindow": "A refugee camp",
+    "Longitude": "92.007694",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.hgepbqjuoqc6",
+    "Name": "Ludmila06"
+  },
+  {
+    "Lattitude": "23.702707",
+    "EssayTitle": "Sweatshops in bangladesh: The true cost of the clothes you wear",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.f178x25svhr2",
+    "Qentry": "62",
+    "NextTitle": "Thai Cuisine",
+    "Marker": "Keraniganj, Ohka, Bangladesh ",
+    "InfoWindow": "A sweatshop or a place of indentured servitude ",
+    "Longitude": "90.399005",
+    "EssayLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.wopkhaahovcl",
+    "Name": "Hanna07"
+  },
+  {
+    "Lattitude": "14.195889",
+    "EssayTitle": "Thai Cuisine ",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.7ymfma2ohknx",
+    "Qentry": "60",
+    "NextTitle": "Gunung Mulu National Park, Malaysia",
+    "Marker": "Thailand ",
+    "InfoWindow": "A gastronomic-tourism detination",
+    "Longitude": "100.453611",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.f178x25svhr2",
+    "Name": "Ludmila09"
+  },
+  {
+    "Lattitude": "3.563137",
+    "EssayTitle": "Gunung Mulu National Park, Malaysia",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.saxsko58eqmq",
+    "Qentry": "21",
+    "NextTitle": "Volcanic Eruption of Mount Tambora",
+    "Marker": "Malaysia",
+    "InfoWindow": "A cave system in Southern Asia",
+    "Longitude": "102.2129171",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.7ymfma2ohknx",
+    "Name": "Kayla03"
+  },
+  {
+    "Lattitude": "-8.247372",
+    "EssayTitle": "Volcanic Eruption of Mount Tambora",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.v7efhvalv5t0",
+    "Qentry": "6",
+    "NextTitle": "Caves of Indonesia",
+    "Marker": "Mnt Tambora, Sumbawa, Indonesia",
+    "InfoWindow": "A place where an eruption once occured ",
+    "Longitude": "117.990672",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.saxsko58eqmq",
+    "Name": "Hanna05"
+  },
+  {
+    "Lattitude": "-1.852926",
+    "EssayTitle": "Caves of Indonesia ",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.ouirdovbw2xg",
+    "Qentry": "67",
+    "NextTitle": "Qatar: A Country With No Water",
+    "Marker": "Caves of Indonesia, Sulawesi",
+    "InfoWindow": "A destination where you can view ancient cave paintings ",
+    "Longitude": "120.527505",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.v7efhvalv5t0",
+    "Name": "Chasity05"
+  },
+  {
+    "Lattitude": "25.287047",
+    "EssayTitle": "Qatar: A Country With No Water",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.8zng8nu1d35k",
+    "Qentry": "76",
+    "NextTitle": "Palau",
+    "Marker": "Qatar",
+    "InfoWindow": "A place where mankind has had to deal with either to little or too much water ",
+    "Longitude": "51.55387",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.ouirdovbw2xg",
+    "Name": "Hanna09"
+  },
+  {
+    "Lattitude": "70.335917",
+    "EssayTitle": "Palau",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.mgzi9zb9nali",
+    "Qentry": "43",
+    "NextTitle": "Hong Kong, Domestic Helpers",
+    "Marker": "Palau",
+    "InfoWindow": "A destination on the seas",
+    "Longitude": "134.476083",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.8zng8nu1d35k",
+    "Name": "Ludmila05"
+  },
+  {
+    "Lattitude": "22.488328",
+    "EssayTitle": "Hong Kong, Domestic Helpers",
+    "OtherLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.3o8sdyi1t9le",
+    "Qentry": "53",
+    "NextTitle": "Air pollution: Beijing, China",
+    "Marker": "Hong Kong, China",
+    "InfoWindow": "A place where people are being exploited today",
+    "Longitude": "114.087829",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.mgzi9zb9nali",
+    "Name": "bee04"
+  },
+  {
+    "Lattitude": "39.985913",
+    "EssayTitle": "Air pollution: Beijing, China",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.x0ehrv7fteaj",
+    "Qentry": "12",
+    "NextTitle": "Confucianism, China",
+    "Marker": "Beijing, China",
+    "InfoWindow": "A place where there is a pressing enviromental issues",
+    "Longitude": "116.386436",
+    "EssayLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.3o8sdyi1t9le",
+    "Name": "Bee01"
+  },
+  {
+    "Lattitude": "35.589694",
+    "EssayTitle": "Confucianism, China",
+    "OtherLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.x0ehrv7fteaj",
+    "Qentry": "2",
+    "NextTitle": "Yakushima Forrest, Japan",
+    "Marker": "Confuciznism-Qufu, China",
+    "InfoWindow": "A macabre destination of either relgious or cultural significances ",
+    "Longitude": "116.989556",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.x0ehrv7fteaj",
+    "Name": "Ludmila04"
+  },
+  {
+    "Lattitude": "36.265451",
+    "EssayTitle": "Yakushima Forrest, Japan",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.qrugy9x4hc8p",
+    "Qentry": "66",
+    "NextTitle": "A Huge Metropolis",
+    "Marker": "Japan",
+    "InfoWindow": "An ancient forest",
+    "Longitude": "138.890698",
+    "EssayLink": "https://docs.google.com/document/d/1Kzjsi1Y7KpPVTo6QseyFr7vJ1Oh8jRVuRwSwBgARKT8/edit#bookmark=id.x0ehrv7fteaj",
+    "Name": "Kayla08"
+  },
+  {
+    "Lattitude": "34.0522342",
+    "EssayTitle": "A Huge Metropolis ",
+    "OtherLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.e2t71nggbz88",
+    "Qentry": "16",
+    "NextTitle": "Scientific Endeavor",
+    "Marker": "Los Angeles, America",
+    "InfoWindow": "A huge metropolis",
+    "Longitude": "-118.2436849",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.qrugy9x4hc8p",
+    "Name": "Kyle06"
+  },
+  {
+    "Lattitude": "37.429571",
+    "EssayTitle": "Scientific Endeavor",
+    "OtherLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.k3n90rvkzxcl",
+    "Qentry": "23",
+    "NextTitle": "Paul Walker",
+    "Marker": "Stamford Uni, America",
+    "InfoWindow": "A site devoted to a scientific endeavor ",
+    "Longitude": "-122.16944",
+    "EssayLink": "https://docs.google.com/document/d/1Y6gu-JncIk5gl88Lnldk7XeVK8cROv-c0UolafXlXYY/edit#bookmark=id.e2t71nggbz88",
+    "Name": "Kyle07"
+  },
+  {
+    "Lattitude": "34.142509",
+    "EssayTitle": "Paul Walker",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.6k678ngygohm",
+    "Qentry": "28",
+    "NextTitle": "Bridalveil Falls",
+    "Marker": "Glendale, CA",
+    "InfoWindow": "A destination that is the birthplace of a famous person",
+    "Longitude": "-118.255074",
+    "EssayLink": "https://docs.google.com/document/d/1r1A0-FzKQneRACUtSAgxkUFcRmVnEDwN9ApE4wJMRgA/edit#bookmark=id.k3n90rvkzxcl",
+    "Name": "Kayla04"
+  },
+  {
+    "Lattitude": "37.717065",
+    "EssayTitle": "Bridalveil Falls",
+    "OtherLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.kwelrci4qutz",
+    "Qentry": "34",
+    "NextTitle": "Yellowstone National Park, USA",
+    "Marker": "Yosemitc Valley, CA",
+    "InfoWindow": "A natural-occuring waterfall or underground water system",
+    "Longitude": "-119.646573",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.6k678ngygohm",
+    "Name": "Chasity07"
+  },
+  {
+    "Lattitude": "44.425233",
+    "EssayTitle": "Yellowstone National Park, USA",
+    "OtherLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.il03c4rjmxls",
+    "Qentry": "44",
+    "NextTitle": "Bridwatching",
+    "Marker": "Yellowstone National Park",
+    "InfoWindow": "A place that is thermally active 1",
+    "Longitude": "-110.593488",
+    "EssayLink": "https://docs.google.com/document/d/1y53Ux-x1oSqN2qXp2It4ND0MTqBGIyfpIwMncuA41NM/edit#bookmark=id.kwelrci4qutz",
+    "Name": "Chasity09"
+  },
+  {
+    "Lattitude": "54.526",
+    "EssayTitle": "Bridwatching",
+    "OtherLink": "",
+    "Qentry": "41",
+    "NextTitle": "",
+    "Marker": "North America",
+    "InfoWindow": "A destination where you can engage in bird watching ",
+    "Longitude": "105.2551",
+    "EssayLink": "https://docs.google.com/document/d/1wR0NjEalA8P7YvGTIdcF3QPSk_rIvLo6r2c5D2Azn0g/edit#bookmark=id.il03c4rjmxls",
+    "Name": "Kayla05"
+  }
+]
+  // Student defined
+      var lat ;//=  42.920250;
+      var lng ;//= -73.239190;
+      var title; // = "Ursula's Office";
+      var contentBlub; //"Oliver can be found here";
+      var essayLink;
+      var essayTitle;
+      var goElseWhereLink;
+      var goElseWhereTitle;
+      
+
+  // Map necessary (only in intiMap?)
+      var map;
+    //  var marker;
+      var place;
+
+
+      function initMap() {
+       // setMapPosition(objs[0]);
+        makeMap();
+       // markerAndWindow();
+        
+
+        for(i in objs) {
+         setMapPosition(objs[i]);
+         markerAndWindow();
+        }
+      }
+
+      function makeMap() {
+        
+        
+        place = {lat: 0,  lng: 0};
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: place
+        });
+      }
+      function markerAndWindow() {
+        place = new google.maps.LatLng(lat, lng); // {lat: lat,  lng: lng};
+        var marker = new google.maps.Marker({
+          position: place,
+          map: map,
+          title: title
+        });
+        
+        var contentString =  BuildInfoContent(contentBlurb,essayLink,essayTitle,goElseWhereLink,goElseWhereTitle);
+
+        
+         var infowindow = new google.maps.InfoWindow({
+          content: contentString});
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);});
+         }
+
+  function setMapPosition(obj) {
+     lat = parseInt(obj.Lattitude); // Number(document.getElementById("lat").value);
+     lng = parseInt(obj.Longitude); // Number(document.getElementById("lng").value);
+     title = obj.Marker; // document.getElementById("title").value;
+     contentBlurb = obj.InfoWindow; //document.getElementById('contentBlurb').value;
+     essayLink = obj.EssayLink; //document.getElementById('essay').value;
+     essayTitle = obj.EssayTitle; //document.getElementById('essayTitle').value;
+     goElseWhereLink = obj.OtherLink; //document.getElementById('goElseWhereLink').value;
+     goElseWhereTitle = obj.NextTitle; //document.getElementById('goElseWhereTitle').value;
+}
+
+  function BuildInfoContent(blurb, url,urlText,aurl,aurlText) {
+
+          var heading = document.createElement("h3");
+          heading.appendChild(document.createTextNode(blurb));
+// First link
+          var txt = document.createTextNode('More information: ');
+          var anchor = document.createElement("A");
+          anchor.href = url;
+          var node = document.createTextNode(urlText);
+          anchor.appendChild(node);
+
+// Second link:
+          var txt2 = document.createTextNode('Next stop on our travels: ');
+          var anchor2 = document.createElement("A");
+          anchor2.href = aurl;
+          var node2 = document.createTextNode(aurlText);
+          anchor2.appendChild(node2);
+
+          var element = document.createElement("div");
+          element.appendChild(heading);
+          element.appendChild(txt);
+          element.appendChild(anchor);
+          element.appendChild(document.createElement("p"));
+          element.appendChild(txt2);
+          element.appendChild(anchor2);
+          return element;
+
+}
+  
+      function processInfo() {
+           lat = Number(document.getElementById("lat").value);
+           lng = Number(document.getElementById("lng").value);
+          initMap();   
+
+} 
+
+      
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZJDPhNK1t28nbhw-1YU_oqU65n1jtN1Y&callback=initMap">
+    </script>
+  </body>
+</html>
