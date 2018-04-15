@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- My thoughts: -->
+
+<!-- Although it works, I happen to see a lot of terrible codes or terrible way of doing things such as:
+  We could have different files for CSS and JavaScript rather than conjusting in one file 
+  because it will be harder to inspect what part of code is doing what as well as adding other things in future.
+
+  Bad indentation
+
+  Though JS script is readable - it’d be better if we’d combine things together
+   and make it more cleaner avoiding the redundant block of codes.
+
+   I also don’t like the way of using API key directly in the link
+   because anyone can use that link to create their own things or just use the link for their purposes. That is,  in future when the number of users increases we could not launch the Map since many users will be hitting the Google Map endpoints at the same time.
+
+   The code is readable and it works and everything is fine 
+   but if that what we want in the future then I’d go on optimizing it breaking the things in the same time. -->
+
+<html>
+  <head>
+    <!-- here, I made separated css styles from html file creating a new css folder containing css file
+    that is style_Group.css file contains all the necessary css file referenced as by fllowing link tag -->
+    <link rel="stylesheet" href="css/style_Group4.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h3><center>Quantum Leap International Project Group 4</center></h3>
+
+    <!-- Extra Feature: Search Box -->
+    <!-- Here I am adding a search box -->
+    <input id="search_box-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <!-- <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZJDPhNK1t28nbhw-1YU_oqU65n1jtN1Y&callback=initMap">
+    </script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZJDPhNK1t28nbhw-1YU_oqU65n1jtN1Y&libraries=places&callback=search_user_defined_input"
+         async defer></script>
+  </body>
+  <footer>
+    <!-- just like different css file 
+    here I also created different js file making anyone to debug, document, understand the code -->
+
+    <!-- Here, the script loads the Google Maps API from the specified URL. -->
+    <!-- Api_Key = AIzaSyBZJDPhNK1t28nbhw-1YU_oqU65n1jtN1Y-->
+
+    <!-- The callback parameter executes the initMap() function when the API loads. 
+    The async attribute asynchronously loads initMap() in the browser along with other key parameters -->
+    
+    <!-- for reading json file from offline_data folder -->
+    <script type="text/javascript" src="offline_data/data.json"></script>
+    <script src="javascript/script_Group4.js"></script>
+  </footer>
+</html>
