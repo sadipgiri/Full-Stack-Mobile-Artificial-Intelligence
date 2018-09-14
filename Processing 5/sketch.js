@@ -1,21 +1,21 @@
-// function setup() { 
-//     createCanvas(400, 400);
-//   } 
-  
-//   function draw() { 
-//     // ellipse(50, 50, 80, 80);
-//     background(220);
-//   }
+/*
+  Setting up Profile using P5.js - loading image through Urls and writing something about myself...
+  Author: Sadip Giri (sadipgiri@bennington.edu)
+*/
+
+var canvasHeight = 360;
+var canvasWidth = 640;
 
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(canvasWidth, canvasHeight);
+  img = createImg('https://avatars3.githubusercontent.com/u/14111239?s=400&u=450f6389a09cb00e31f51947f2aeb983db278a24&v=4');
+  img.hide();
 }
 
 function draw() {
-  if (mouseIsPressed) {
-    fill(0);
-  } else {
-    fill(255);
-  }
-  ellipse(mouseX, mouseY, 80, 80);
+	width = 250;
+	height = 250;
+  image(img, canvasWidth/3, canvasHeight/3, width, height); 
+	textSize(32);
+	text('Sadip Giri', 250, 100);
 }
